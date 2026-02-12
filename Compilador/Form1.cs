@@ -47,13 +47,20 @@ namespace Compilador
             Lexer lexer = new Lexer(codigo);
             StringBuilder resultado = new StringBuilder();
 
-            string token;
             do
             {
-                token = lexer.GetToken(true);
-                resultado.AppendLine(token + "  ->  " + lexer.GetTipoToken());
-            }
-            while (token != "<FIN>");
+                lexer.GetToken(true);
+
+                resultado.AppendLine(
+                    lexer.GetLexema() +
+                    "  ->  " +
+                    lexer.GetTipoToken() +
+                    " (" +
+                    lexer.GetCodigoToken() +
+                    ")"
+                );
+
+            } while (lexer.GetCodigoToken() != 24); // 24 = <FIN>
 
             textBox2.Text = resultado.ToString();
         }
