@@ -91,7 +91,7 @@
             // button2
             // 
             button2.Font = new Font("Segoe UI", 18F);
-            button2.Location = new Point(1124, 6);
+            button2.Location = new Point(1058, 6);
             button2.Name = "button2";
             button2.Size = new Size(157, 46);
             button2.TabIndex = 5;
@@ -103,7 +103,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 18F);
-            label3.Location = new Point(1124, 119);
+            label3.Location = new Point(1058, 115);
             label3.Name = "label3";
             label3.Size = new Size(111, 41);
             label3.TabIndex = 6;
@@ -121,7 +121,6 @@
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(label1);
-            Cursor = Cursors.Default;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "OBLIVION";

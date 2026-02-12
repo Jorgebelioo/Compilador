@@ -36,6 +36,7 @@ namespace Compilador
         {
             textBox2.Clear();
             label3.Text = "       . . .\r\n";
+            label3.ForeColor = Color.Black;
 
             string codigo = textBox1.Text;
 
@@ -55,10 +56,7 @@ namespace Compilador
                 resultado.AppendLine(
                     lexer.GetLexema() +
                     "  ->  " +
-                    lexer.GetTipoToken() +
-                    " (" +
-                    lexer.GetCodigoToken() +
-                    ")"
+                    lexer.GetTipoToken()
                 );
 
             } while (lexer.GetCodigoToken() != 24); // 24 = <FIN>
