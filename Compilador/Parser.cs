@@ -37,9 +37,7 @@ namespace Compilador
                                 " | Token actual: " + lexer.GetLexema());
         }
 
-        // ==============================
         // PROGRAMA
-        // ==============================
 
         public void Programa()
         {
@@ -82,9 +80,7 @@ namespace Compilador
             Match(24);  // <FIN>
         }
 
-        // ==============================
         // REGLAS
-        // ==============================
 
         private void Modificador()
         {
@@ -153,7 +149,6 @@ namespace Compilador
             Match(10); // }
         }
 
-        // ACTUALIZADO: ahora exige Bloque
         private void Ciclo()
         {
             Match(5);   // repetir
@@ -163,7 +158,7 @@ namespace Compilador
 
             Match(12);  // )
 
-            Bloque();   // ← CAMBIO IMPORTANTE
+            Bloque();  
         }
 
         private void Imprimir()
@@ -204,7 +199,7 @@ namespace Compilador
                 // Operador
                 if (tokenActual == 16 || tokenActual == 17 ||
                     tokenActual == 18 || tokenActual == 19 ||
-                    tokenActual == 20)  // ← ahora incluye división
+                    tokenActual == 20)
                 {
                     Avanzar();
 

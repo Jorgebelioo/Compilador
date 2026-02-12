@@ -35,6 +35,7 @@ namespace Compilador
         private void button1_Click(object sender, EventArgs e)
         {
             textBox2.Clear();
+            label3.Text = "       . . .\r\n";
 
             string codigo = textBox1.Text;
 
@@ -73,7 +74,7 @@ namespace Compilador
 
             if (string.IsNullOrWhiteSpace(codigo))
             {
-                MessageBox.Show("Ingrese un programa primero");
+                MessageBox.Show("Ingrese un programa para analizar");
                 return;
             }
 
