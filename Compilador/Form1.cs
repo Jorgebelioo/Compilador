@@ -64,5 +64,37 @@ namespace Compilador
 
             textBox2.Text = resultado.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            label3.Text = "";
+
+            string codigo = textBox1.Text;
+
+            if (string.IsNullOrWhiteSpace(codigo))
+            {
+                MessageBox.Show("Ingrese un programa primero");
+                return;
+            }
+
+            try
+            {
+                Lexer lexer = new Lexer(codigo);
+                Parser parser = new Parser(lexer);
+
+                parser.Programa();
+
+                label3.Text = "Programa OK";
+                label3.ForeColor = Color.Green;
+                label3.Font = new Font(label3.Font, FontStyle.Bold);
+            }
+            catch
+            {
+                label3.Text = "Syntax error";
+                label3.ForeColor = Color.Red;
+                label3.Font = new Font(label3.Font, FontStyle.Bold);
+            }
+        }
+
     }
 }

@@ -34,13 +34,15 @@
             label2 = new Label();
             textBox2 = new TextBox();
             button1 = new Button();
+            button2 = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(172, 9);
+            label1.Location = new Point(150, 9);
             label1.Name = "label1";
             label1.Size = new Size(166, 46);
             label1.TabIndex = 0;
@@ -86,16 +88,40 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 18F);
+            button2.Location = new Point(1124, 6);
+            button2.Name = "button2";
+            button2.Size = new Size(157, 46);
+            button2.TabIndex = 5;
+            button2.Text = "Parser";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 18F);
+            label3.Location = new Point(1124, 119);
+            label3.Name = "label3";
+            label3.Size = new Size(111, 41);
+            label3.TabIndex = 6;
+            label3.Text = "       . . .\r\n";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(label3);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox2);
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(label1);
+            Cursor = Cursors.Default;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "OBLIVION";
@@ -111,5 +137,7 @@
         private Label label2;
         private TextBox textBox2;
         private Button button1;
+        private Button button2;
+        private Label label3;
     }
 }
