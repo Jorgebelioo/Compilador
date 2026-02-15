@@ -13,7 +13,13 @@ namespace Compilador
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            dataGridView1.Columns.Clear();
+            dataGridView1.Columns.Add("Lexema", "Lexema");
+            dataGridView1.Columns.Add("Tipo", "Tipo Token");
 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -34,7 +40,8 @@ namespace Compilador
         // BOTÓN SCANNER
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox2.Clear();
+            dataGridView1.Rows.Clear();
+
             label3.Text = "       . . .\r\n";
             label3.ForeColor = Color.Black;
 
@@ -47,21 +54,17 @@ namespace Compilador
             }
 
             Lexer lexer = new Lexer(codigo);
-            StringBuilder resultado = new StringBuilder();
 
             do
             {
                 lexer.GetToken(true);
 
-                resultado.AppendLine(
-                    lexer.GetLexema() +
-                    "  ->  " +
+                dataGridView1.Rows.Add(
+                    lexer.GetLexema(),
                     lexer.GetTipoToken()
                 );
 
             } while (lexer.GetCodigoToken() != 24); // 24 = <FIN>
-
-            textBox2.Text = resultado.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -95,5 +98,14 @@ namespace Compilador
             }
         }
 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

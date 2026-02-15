@@ -32,10 +32,11 @@
             label1 = new Label();
             textBox1 = new TextBox();
             label2 = new Label();
-            textBox2 = new TextBox();
             button1 = new Button();
             button2 = new Button();
             label3 = new Label();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -67,15 +68,6 @@
             label2.Size = new Size(0, 20);
             label2.TabIndex = 2;
             label2.Click += label2_Click;
-            // 
-            // textBox2
-            // 
-            textBox2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(519, 58);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(417, 445);
-            textBox2.TabIndex = 3;
             // 
             // button1
             // 
@@ -109,15 +101,27 @@
             label3.TabIndex = 6;
             label3.Text = "       . . .\r\n";
             // 
+            // dataGridView1
+            // 
+            dataGridView1.BackgroundColor = SystemColors.Window;
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(518, 58);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.Size = new Size(411, 445);
+            dataGridView1.TabIndex = 7;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(dataGridView1);
             Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(textBox2);
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(label1);
@@ -125,6 +129,7 @@
             Name = "Form1";
             Text = "OBLIVION";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,9 +139,9 @@
         private Label label1;
         private TextBox textBox1;
         private Label label2;
-        private TextBox textBox2;
         private Button button1;
         private Button button2;
         private Label label3;
+        private DataGridView dataGridView1;
     }
 }
