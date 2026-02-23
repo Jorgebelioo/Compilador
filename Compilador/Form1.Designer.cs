@@ -36,6 +36,8 @@
             button2 = new Button();
             label3 = new Label();
             dataGridView1 = new DataGridView();
+            button3 = new Button();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -113,11 +115,34 @@
             dataGridView1.TabIndex = 7;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 18F);
+            button3.Location = new Point(1344, 6);
+            button3.Name = "button3";
+            button3.Size = new Size(171, 46);
+            button3.TabIndex = 8;
+            button3.Text = "Semantico";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 18F);
+            label4.Location = new Point(1344, 115);
+            label4.Name = "label4";
+            label4.Size = new Size(111, 41);
+            label4.TabIndex = 9;
+            label4.Text = "       . . .";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(label4);
+            Controls.Add(button3);
             Controls.Add(dataGridView1);
             Controls.Add(label3);
             Controls.Add(button2);
@@ -143,5 +168,7 @@
         private Button button2;
         private Label label3;
         private DataGridView dataGridView1;
+        private Button button3;
+        private Label label4;
     }
 }

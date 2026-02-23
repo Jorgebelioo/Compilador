@@ -23,6 +23,16 @@ namespace Compilador
             indice = 0;
         }
 
+        // RESET PARA REUTILIZAR
+
+        public void Reset()
+        {
+            indice = 0;
+            tokenActual = "";
+            tipoToken = "";
+            codigoToken = 0;
+        }
+
         public string GetLexema()
         {
             return tokenActual;

@@ -19,16 +19,12 @@ namespace Compilador
             tokenActual = lexer.GetCodigoToken();
         }
 
-        private void Match(int tokenEsperado)
+        private void Match(int esperado)
         {
-            if (tokenActual == tokenEsperado)
-            {
+            if (tokenActual == esperado)
                 Avanzar();
-            }
             else
-            {
-                Error("Se esperaba token: " + tokenEsperado);
-            }
+                Error("Se esperaba token: " + esperado);
         }
 
         private void Error(string mensaje)
@@ -37,82 +33,60 @@ namespace Compilador
                                 " | Token actual: " + lexer.GetLexema());
         }
 
-        // PROGRAMA
-
         public void Programa()
         {
-            // (Importacion)*
-            while (tokenActual == 2) // importar
-            {
+            while (tokenActual == 2)
                 Importacion();
-            }
 
-            // Modificador+
             if (tokenActual == 21 || tokenActual == 22 || tokenActual == 23)
             {
                 while (tokenActual == 21 || tokenActual == 22 || tokenActual == 23)
-                {
-                    Modificador();
-                }
+                    Avanzar();
             }
             else
-            {
                 Error("Se esperaba al menos un modificador");
-            }
 
-            Match(1);   // modulo
-            Match(25);  // Identificador
-            Match(9);   // {
+            Match(1);
+            Match(25);
+            Match(9);
 
-            // (Declaracion)*
             while (tokenActual == 3 || tokenActual == 4)
-            {
                 Declaracion();
-            }
 
-            // Instruccion*
             while (EsInicioInstruccion())
-            {
                 Instruccion();
-            }
 
-            Match(10);  // }
-            Match(24);  // <FIN>
-        }
-
-        // REGLAS
-
-        private void Modificador()
-        {
-            if (tokenActual == 21 || tokenActual == 22 || tokenActual == 23)
-                Avanzar();
-            else
-                Error("Modificador inválido");
+            Match(10);
+            Match(24);
         }
 
         private void Importacion()
         {
-            Match(2);   // importar
-            Match(25);  // Identificador
+            Match(2);
+            Match(25);
 
-            while (tokenActual == 14) // .
+            while (tokenActual == 14)
             {
                 Match(14);
                 Match(25);
             }
 
-            Match(13);  // ;
+            Match(13);
         }
 
         private void Declaracion()
         {
-            if (tokenActual == 3 || tokenActual == 4) // entero | logico
-                Avanzar();
-            else
-                Error("Tipo inválido");
+            Avanzar(); // tipo
+            Match(25);
+            Match(13);
+        }
 
-            Match(25);  // Identificador
-            Match(13);  // ;
+        private bool EsInicioInstruccion()
+        {
+            return tokenActual == 9 ||
+                   tokenActual == 5 ||
+                   tokenActual == 6 ||
+                   tokenActual == 25;
         }
 
         private void Instruccion()
@@ -129,77 +103,48 @@ namespace Compilador
                 Error("Instrucción inválida");
         }
 
-        private bool EsInicioInstruccion()
-        {
-            return tokenActual == 9 ||   // {
-                   tokenActual == 5 ||   // repetir
-                   tokenActual == 6 ||   // mostrar
-                   tokenActual == 25;    // identificador
-        }
-
         private void Bloque()
         {
-            Match(9); // {
-
+            Match(9);
             while (EsInicioInstruccion())
-            {
                 Instruccion();
-            }
-
-            Match(10); // }
+            Match(10);
         }
 
         private void Ciclo()
         {
-            Match(5);   // repetir
-            Match(11);  // (
-
+            Match(5);
+            Match(11);
             Expresion();
-
-            Match(12);  // )
-
-            Bloque();  
+            Match(12);
+            Bloque();
         }
 
         private void Imprimir()
         {
-            Match(6);   // mostrar
-            Match(11);  // (
-
+            Match(6);
+            Match(11);
             Expresion();
-
-            Match(12);  // )
-            Match(13);  // ;
+            Match(12);
+            Match(13);
         }
 
         private void Asignacion()
         {
-            Match(25);  // Identificador
-            Match(15);  // =
-
+            Match(25);
+            Match(15);
             Expresion();
-
-            Match(13);  // ;
+            Match(13);
         }
 
         private void Expresion()
         {
-            // verdadero | falso
-            if (tokenActual == 7 || tokenActual == 8)
-            {
-                Avanzar();
-                return;
-            }
-
-            // Identificador | Numero
-            if (tokenActual == 25 || tokenActual == 26)
+            if (tokenActual == 7 || tokenActual == 8 ||
+                tokenActual == 25 || tokenActual == 26)
             {
                 Avanzar();
 
-                // Operador
-                if (tokenActual == 16 || tokenActual == 17 ||
-                    tokenActual == 18 || tokenActual == 19 ||
-                    tokenActual == 20)
+                if (tokenActual >= 16 && tokenActual <= 20)
                 {
                     Avanzar();
 
@@ -208,11 +153,11 @@ namespace Compilador
                     else
                         Error("Se esperaba identificador o número");
                 }
-
-                return;
             }
-
-            Error("Expresión inválida");
+            else
+            {
+                Error("Expresión inválida");
+            }
         }
     }
 }
