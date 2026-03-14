@@ -38,7 +38,10 @@
             dataGridView1 = new DataGridView();
             button3 = new Button();
             label4 = new Label();
+            button4 = new Button();
+            dataGridView2 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -136,11 +139,36 @@
             label4.TabIndex = 9;
             label4.Text = "       . . .";
             // 
+            // button4
+            // 
+            button4.Font = new Font("Segoe UI", 18F);
+            button4.Location = new Point(72, 541);
+            button4.Name = "button4";
+            button4.Size = new Size(280, 51);
+            button4.TabIndex = 10;
+            button4.Text = "Codigo Intermedio";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.BackgroundColor = SystemColors.Window;
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(32, 622);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.Size = new Size(897, 379);
+            dataGridView2.TabIndex = 11;
+            dataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(dataGridView2);
+            Controls.Add(button4);
             Controls.Add(label4);
             Controls.Add(button3);
             Controls.Add(dataGridView1);
@@ -155,6 +183,7 @@
             Text = "OBLIVION";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -170,5 +199,7 @@
         private DataGridView dataGridView1;
         private Button button3;
         private Label label4;
+        private Button button4;
+        private DataGridView dataGridView2;
     }
 }

@@ -20,6 +20,15 @@ namespace Compilador
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ReadOnly = true;
             dataGridView1.AllowUserToAddRows = false;
+
+            dataGridView2.Columns.Clear();
+            dataGridView2.Columns.Add("Nombre", "Nombre");
+            dataGridView2.Columns.Add("Operacion", "Operacion");
+            dataGridView2.Columns.Add("Operandos", "Operandos");
+
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView2.ReadOnly = true;
+            dataGridView2.AllowUserToAddRows = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -74,6 +83,8 @@ namespace Compilador
         private void button2_Click(object sender, EventArgs e)
         {
             label3.Text = "";
+            label4.Text = "       . . .\r\n";
+            label4.ForeColor = Color.Black;
 
             string codigo = textBox1.Text;
 
@@ -90,13 +101,13 @@ namespace Compilador
 
                 parser.Programa();
 
-                label3.Text = "Programa OK";
+                label3.Text = "Sintactico OK";
                 label3.ForeColor = Color.Green;
                 label3.Font = new Font(label3.Font, FontStyle.Bold);
             }
             catch (Exception ex) when (ex.Message.StartsWith("Error sintáctico"))
             {
-                label3.Text = "Syntax error";
+                label3.Text = "Error sintáctico";
                 label3.ForeColor = Color.Red;
                 label3.Font = new Font(label3.Font, FontStyle.Bold);
             }
@@ -130,18 +141,18 @@ namespace Compilador
                 // Crear lexer
                 Lexer lexer = new Lexer(codigo);
 
-                // 1?? Análisis sintáctico (si falla, no lo atrapamos)
+                // 1 Análisis sintáctico (si falla, no lo atrapamos)
                 Parser parser = new Parser(lexer);
                 parser.Programa();
 
-                // 2?? Reiniciar lexer para el semántico
+                // 2 Reiniciar lexer para el semántico
                 lexer.Reset();
 
-                // 3?? Análisis semántico
+                // 3 Análisis semántico
                 Semantico sem = new Semantico();
                 sem.Analizar(lexer);
 
-                label4.Text = "Código OK";
+                label4.Text = "Semantico OK";
                 label4.ForeColor = Color.Green;
                 label4.Font = new Font(label4.Font, FontStyle.Bold);
             }
@@ -153,12 +164,60 @@ namespace Compilador
                 }
                 else if (ex.Message.StartsWith("Error sintáctico"))
                 {
-                    
+
                 }
                 label4.Text = "Error semántico";
                 label4.ForeColor = Color.Red;
                 label4.Font = new Font(label4.Font, FontStyle.Bold);
             }
+        }
+
+        // Boton Codigo Intermedio
+        private void button4_Click(object sender, EventArgs e)
+        {
+            dataGridView2.Rows.Clear();
+
+            string codigo = textBox1.Text;
+
+            if (string.IsNullOrWhiteSpace(codigo))
+            {
+                MessageBox.Show("Ingrese código");
+                return;
+            }
+
+            try
+            {
+                Lexer lexer = new Lexer(codigo);
+
+                // Sintáctico
+                Parser parser = new Parser(lexer);
+                parser.Programa();
+
+                // Reiniciar lexer
+                lexer.Reset();
+
+                // Generar código intermedio
+                CodigoIntermedio gen = new CodigoIntermedio();
+
+                var instrucciones = gen.Generar(lexer);
+
+                foreach (var ins in instrucciones)
+                {
+                    dataGridView2.Rows.Add(
+                        ins.Nombre,
+                        ins.Operacion,
+                        ins.Operandos
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
