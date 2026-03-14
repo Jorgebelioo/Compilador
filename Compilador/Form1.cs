@@ -22,6 +22,7 @@ namespace Compilador
             dataGridView1.AllowUserToAddRows = false;
 
             dataGridView2.Columns.Clear();
+
             dataGridView2.Columns.Add("Nombre", "Nombre");
             dataGridView2.Columns.Add("Operacion", "Operacion");
             dataGridView2.Columns.Add("Operandos", "Operandos");
@@ -189,14 +190,11 @@ namespace Compilador
             {
                 Lexer lexer = new Lexer(codigo);
 
-                // Sintáctico
                 Parser parser = new Parser(lexer);
                 parser.Programa();
 
-                // Reiniciar lexer
                 lexer.Reset();
 
-                // Generar código intermedio
                 CodigoIntermedio gen = new CodigoIntermedio();
 
                 var instrucciones = gen.Generar(lexer);

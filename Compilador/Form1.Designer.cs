@@ -142,7 +142,7 @@
             // button4
             // 
             button4.Font = new Font("Segoe UI", 18F);
-            button4.Location = new Point(72, 541);
+            button4.Location = new Point(323, 509);
             button4.Name = "button4";
             button4.Size = new Size(280, 51);
             button4.TabIndex = 10;
@@ -155,7 +155,7 @@
             dataGridView2.BackgroundColor = SystemColors.Window;
             dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(32, 622);
+            dataGridView2.Location = new Point(32, 576);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(897, 379);
