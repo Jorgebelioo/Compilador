@@ -58,6 +58,8 @@ namespace Compilador
             label4.Text = "       . . .\r\n";
             label4.ForeColor = Color.Black;
 
+            dataGridView2.Rows.Clear();
+
             string codigo = textBox1.Text;
 
             if (string.IsNullOrWhiteSpace(codigo))
