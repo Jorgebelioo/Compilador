@@ -154,6 +154,7 @@
             // 
             dataGridView2.BackgroundColor = SystemColors.Window;
             dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(32, 576);
             dataGridView2.Name = "dataGridView2";

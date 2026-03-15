@@ -177,10 +177,6 @@ namespace Compilador
 
                 string salto = "JGE";
 
-                if (operador == "<") salto = "JGE";
-                if (operador == ">") salto = "JLE";
-                if (operador == "==") salto = "JNE";
-
                 code.Add(new Linea { Operacion = salto, Operandos = L2 });
 
                 lexer.GetToken(true); // )
